@@ -1,0 +1,289 @@
+@model Fondir.Bacheca.FE.WebUI.Models.Formulario_DatiDocumenti
+
+<link href="~/Content/fileinput.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/Scripts/customValidator.js"></script>
+
+<script src="~/Scripts/FileUploadV2/fileinput.js"></script>
+
+<script src="~/Scripts/FileUploadV2/fileinput_locale_it.js"></script>
+
+<script src="~/Scripts/inputs.js"></script>
+
+<div class="row">
+
+    <div class="col-md-10">
+        <div class="lead">Allegati richieste</div>
+    </div>
+
+    @Html.ButtonIndietroRichiesteIniziativa()
+
+</div>
+
+<hr />
+
+<div class="clearfix"></div>
+
+@if (Model.Documenti == null || Model.Documenti.Count() == 0)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <div style="padding:5px">
+            Nessun allegato ancora inserito.
+        </div>
+    </div>
+}
+else
+{
+    <form onsubmit="return false" action="" data-ajax="true" data-ajax-begin="">
+        @*using (Ajax.BeginForm(null, null, new { id = Model.RichiestaID }, new AjaxOptions
+            {
+                OnBegin = "OnBegin_ProcessUploadDocumento",
+                //OnSuccess = "OnSuccess_ProcessUploadDocumento",
+                OnFailure = "handeleError"
+            }, new { id = "formUpload", @onsubmit="return false" }))
+            {*@
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.RichiestaID)
+
+        <table class="table table-bordered table-hover">
+            <thead class="table-fondir">
+                <tr>
+                    <th>Tipo documento</th>
+                    <th>Descrizione</th>
+                    <th>File</th>
+                    @if (Html.IsCurrentUserAdmin())
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var documenti in Model.Documenti)
+                {
+
+
+                    @Html.HiddenFor(m => documenti.ID)
+                    @Html.HiddenFor(m => documenti.RichiestaID)
+                    @Html.HiddenFor(m => documenti.TipoDocumentoID)
+                    @Html.HiddenFor(m => documenti.TipoDocumento)
+
+
+                    @*@for (int i = 0; i < Model.Documenti.Count(); i++)
+                        {*@
+
+                    @*@Html.HiddenFor(m => Model.Documenti[i].ID, new { @Name = "Documenti[" + i + "].ID" })
+                        @Html.HiddenFor(m => Model.Documenti[i].RichiestaID, new { @Name = "Documenti[" + i + "].RichiestaID" })
+                        @Html.HiddenFor(m => Model.Documenti[i].TipoDocumentoID, new { @Name = "Documenti[" + i + "].TipoDocumentoID" })
+                        @Html.HiddenFor(m => Model.Documenti[i].TipoDocumento, new { @Name = "Documenti[" + i + "].TipoDocumento" })*@
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                @Html.DisplayFor(m => documenti.TipoDocumento)
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                @if (documenti.ID == 0 || Html.IsCurrentUserAdmin())
+                                {
+                                    @Html.EditorFor(m => documenti.Descrizione, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                        }
+                                    })
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(m => documenti.Descrizione)
+                                }
+                            </div>
+                        </td>
+
+
+                        <td>
+                            <div class="form-group">
+                                @if (documenti.ID == 0 || Html.IsCurrentUserAdmin())
+                                {
+                                    @Html.EditorFor(m => documenti.NomeFile, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control file",
+                                            type = "file",
+                                            data_show_upload = "false",
+                                            data_show_cancel = "false",
+                                            data_show_preview = "false",
+                                        }
+                                    })
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(m => documenti.NomeFile)
+                                }
+                            </div>
+                        </td>
+
+                        @if (Html.IsCurrentUserAdmin())
+                        {
+                            <td style="width:100px">
+
+                                @*@Ajax.ActionLink("Storico", "DatiBeneficiarioStorico",
+                                    new { beneficiarioID = Model[i].BeneficiariaID },
+                                    new AjaxOptions
+                                    {
+                                        OnBegin = "OnBegin_DatiBeneficiari",
+                                        OnSuccess = "OnSuccess_DatiBeneficiarioStorico",
+                                        OnFailure = "handeleError"
+
+                                    }, new { @class = "btn btn-sm btn-primary mt-1", style = "width:100px" })*@
+
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="clearfix">
+
+        </div>
+
+        @if (Html.IsCurrentUserAdmin())
+        {
+            <hr />
+
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-lg btn-success">Aggiorna dati</button>
+            </div>
+
+            <hr />
+
+            <div class="col-md-12">
+                @Html.ValidationSummary()
+            </div>
+
+        }
+    </form>
+}
+}
+<script>
+    window.onsubmit = function () { return false; };
+
+    $().ready(function () {
+        $('.kv-upload-progress').hide();
+    });
+
+    function OnBegin_ProcessUploadDocumento() {
+        uploadUploadFilePratiche();
+    }
+
+    function uploadUploadFilePratiche() {
+
+
+
+
+        var formdata = new FormData(document.getElementById('formUpload'));
+
+        $.ajax({
+            url: '@Url.Action("ProcessUploadDocumento", "Formulario")',  //Server script to process data
+            type: 'POST',
+            xhr: function () {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Check if upload property exists
+                    myXhr.upload.addEventListener('progress',
+                        progressHandlingFunction, false); // For handling the progress of the upload
+                }
+                return myXhr;
+            },
+            data: formdata,
+            //Options to tell jQuery not to process data or worry about content-type.
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+
+
+        @*var formdata = $('#formUpload');
+        alert('@Url.Action("ProcessUploadDocumento", "Formulario")' + "?" + formdata.serialize());*@
+
+
+
+
+        @*var formdata = new FormData(document.getElementById('formUpload'));
+
+
+
+
+
+
+        $.ajax({
+            url: '@Url.Action("ProcessUploadDocumento", "Formulario")',
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                //reloadDocumentiLista();
+                if (data.isValid) {
+                    $("#esitoProcessUploadDocumento").html(getAlert_Success(data.esito));
+                    //reloadDocumentiLista();
+                    //setTimeout(function () {
+                    //    hideModal(),
+                    //    enableAllBtn();
+                    //}, 1000);
+                }
+                else {
+                    enableAllBtn();
+                    $("#esitoProcessUploadDocumento").html(getAlert_Danger(data.esito));
+                }
+            },
+            error: function (error) {
+                handleError(error);
+            },
+            beforeSend: function () {
+                disableAllBtn();
+                //$('#progressbarUploadFilePratiche').show();
+                //$('#progressbarUploadFilePratiche .progress-bar').css("width", "0%").attr('aria-valuenow', 0);
+            },
+
+            xhr: function () {
+                var xhr = $.ajaxSettings.xhr();
+
+                xhr.upload.onprogress = function (e) {
+                    // For uploads
+                    //if (e.lengthComputable) {
+                    //    var percentComplete = (e.loaded / e.total) * 100;
+                    //    $('#progressbarUploadFilePratiche .progress-bar').css("width", percentComplete + "%").attr('aria-valuenow', percentComplete);
+                    //}
+                };
+
+                return xhr;
+            },
+
+        });*@
+    }
+
+    function reloadDocumentiLista() {
+        getViewRichiesta("DatiDocumenti");
+    }
+
+
+    //If file is successfully uploaded, label is updated with message
+    function progressHandlingFunction(e) {
+        //if (e.lengthComputable) {
+        //    $("#divAddInforamtionDialog").show();
+        //    $("#txtuploadedMsgAdd").text("  " + fileName + " uploaded successfully");
+        //}
+    }
+</script>
+
+
+

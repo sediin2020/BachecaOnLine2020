@@ -1,0 +1,158 @@
+function OnBegin_EliminaRichiesta() {
+    disableAllBtn();
+}
+
+function OnSuccess_EliminaRichiesta(data) {
+    enableAllBtn();
+    showModal_NoFooter("Elimina richiesta", data);
+}
+
+function OnBegin_DomandaFinanziamento() {
+    disableAllBtn();
+}
+
+function OnSuccess_DomandaFinanziamento(data) {
+    enableAllBtn();
+    showModal_NoFooter("Domanda di Presentazione del piano", data);
+}
+
+
+function OnBegin_DichiarazioneImpreseListaBeneficiari() {
+    disableAllBtn();
+}
+
+function OnSuccess_DichiarazioneImpreseListaBeneficiari(data) {
+    enableAllBtn();
+    showModal("Dichiarazione imprese beneficiare", data);
+}
+
+function OnSuccess_LoadRicerca(data) {
+    $("#resultRicerca").html(data);
+    scrollContainerTop();
+    destroyModal();
+}
+
+function OnBegin_CambioStatoAggiornaCupRichiesta() {
+    disableAllBtn();
+    showWaidModal();
+}
+
+function OnSuccess_CambioStatoAggiornaCupRichiesta(data) {
+    hideWaidModal();
+    enableAllBtn();
+    showModal_NoFooter("Cambio Stato", data);
+}
+
+function OnBegin_ImpostaCorBeneficiario() {
+    disableAllBtn();
+    showWaidModal();
+}
+
+function OnSuccess_ImpostaCorBeneficiario(data) {
+    hideWaidModal();
+    enableAllBtn();
+    showModal_NoFooter("Imposta Cor Beneficiario", data);
+}
+
+function OnBegin_EliminaRichiesta() {
+    disableAllBtn();
+}
+
+function OnSuccess_EliminaRichiesta(data) {
+    enableAllBtn();
+    showModal_NoFooter("Elimina richiesta", data);
+}
+
+function OnBegin_DomandaFinanziamento() {
+    disableAllBtn();
+}
+
+function OnSuccess_DomandaFinanziamento(data) {
+    enableAllBtn();
+    showModal_NoFooter("Domanda di Presentazione del piano", data);
+}
+
+
+function OnBegin_DichiarazioneImpreseListaBeneficiari() {
+    disableAllBtn();
+}
+
+function OnSuccess_DichiarazioneImpreseListaBeneficiari(data) {
+    enableAllBtn();
+    showModal("Dichiarazione imprese beneficiare", data);
+}
+
+var intervalgetProgressStampaRichiestaPDF;
+
+function OnBegin_StampaRichiestaPDFExists() {
+   // clearInterval(intervalgetProgressStampaRichiestaPDF);
+}
+
+function OnSuccess_StampaRichiestaPDFExists(data) {
+        alert();
+
+    if (data.EndPDF && String(data.Esito).toLowerCase() == "ok") {
+        var link = document.createElement('a');
+        link.href = data.UrlPDF;
+        link.target = "blank";
+        document.body.appendChild(link);
+        link.click();
+    }
+    else {
+        if (data.EndPDF)
+            showModal("Richiesta PDF", getAlert_Danger(data.esito));
+        else {
+            showModal("Richiesta PDF", createProgressStampaRichiestaPDFModalBody(data));
+            intervalgetProgressStampaRichiestaPDF = setInterval(function () { getProgressStampaRichiestaPDF(data.RichiestaID) }, 3000)
+        }
+    }
+    }
+    function getProgressStampaRichiestaPDF(id) {
+        $.ajax({
+            url: "http://localhost:2165/Iniziative/PDFRichiesta",
+            data: { "id": id },
+            cache: false,
+            success: function (data) {
+
+                $(".modal-body").html(createProgressStampaRichiestaPDFModalBody(data))
+
+                if (data.EndPDF && String(data.Esito).toLowerCase() == "ok") {
+                    createProgressStampaRichiestaPDFDownLoadLink(data);
+                }
+
+                if (data.EndPDF) {
+                    clearInterval(intervalgetProgressStampaRichiestaPDF);
+                }
+
+            },
+            error: function (e) {
+                //alert()
+            }
+        });
+
+    }
+
+    function createProgressStampaRichiestaPDFDownLoadLink(data) {
+        var link = document.createElement('a');
+        link.href = data.UrlPDF;
+        link.target = "blank";
+        document.body.appendChild(link);
+        link.click();
+    }
+
+    function createProgressStampaRichiestaPDFModalBody(data) {
+        var _color = "white";
+        if (data.PercentualeComletamento == 0) {
+            _color = "black";
+        }
+        var _m = "<label class='text-danger'>La sua richiesta e in fase di creazione del PDF.<br/>";
+        //La chidiamo di riprovare tra qualche minuto.</label><br/>";
+        _m += "<strong>Stato: " + data.StepDescrizione + "<strong><br/>";
+        // + " - " + data.StepsEseguiti + " su " + data.TotaleSteps + "<strong><br/>";
+        _m += "<br/>";
+        _m += "<div class=\"progress\" id=\"progresscreazionepdf\">";
+        _m += "<div class=\"progress-bar progress-bar-striped progress-bar-animated\" role=\"progressbar\" ";
+        _m += "aria-valuenow=\"" + data.PercentualeComletamento + "\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + data.PercentualeComletamento + "%; height: 23px; line-height: 23px; color:" + _color + "\">" + data.PercentualeComletamento + "%</div></div>";
+        return _m;
+    }
+}

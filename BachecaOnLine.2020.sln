@@ -1,0 +1,120 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fondir.Bacheca.Dom", "Fondir.Bacheca.Dom\Fondir.Bacheca.Dom.csproj", "{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fondir.Bacheca.WebUI", "Fondir.Bacheca.WebUI\Fondir.Bacheca.WebUI.csproj", "{E3A96A04-E34C-4A60-9185-6BD3D496F535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fondir.Bacheca.WebUI.Helper", "Fondir.Bacheca.WebUI.Helper\Fondir.Bacheca.WebUI.Helper.csproj", "{F7CE6384-936A-4F4C-B568-D6DF174F8797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetupConfiguration", "SetupConfiguration\SetupConfiguration.csproj", "{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorEngineServices", "RazorEngineServices\RazorEngineServices.csproj", "{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rotativa.MVC", "Rotativa.MVC\Rotativa.MVC.csproj", "{FB48CDC0-79D4-48CA-86B4-1C22946782C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Collaudo|Any CPU = Collaudo|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Sviluppo|Any CPU = Sviluppo|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Collaudo|Any CPU.ActiveCfg = Release|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Collaudo|Any CPU.Build.0 = Release|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Sviluppo|Any CPU.ActiveCfg = Release|Any CPU
+		{63EF8C59-FA51-4964-ABFA-E1CF1A36B615}.Sviluppo|Any CPU.Build.0 = Release|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Collaudo|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Collaudo|Any CPU.Build.0 = Release|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Sviluppo|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A96A04-E34C-4A60-9185-6BD3D496F535}.Sviluppo|Any CPU.Build.0 = Release|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Collaudo|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Collaudo|Any CPU.Build.0 = Release|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Sviluppo|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CE6384-936A-4F4C-B568-D6DF174F8797}.Sviluppo|Any CPU.Build.0 = Release|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Collaudo|Any CPU.ActiveCfg = Release|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Collaudo|Any CPU.Build.0 = Release|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Sviluppo|Any CPU.ActiveCfg = Release|Any CPU
+		{37B426D7-C1AB-41EE-9A9B-C8FC2AB49681}.Sviluppo|Any CPU.Build.0 = Release|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Collaudo|Any CPU.ActiveCfg = Release|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Collaudo|Any CPU.Build.0 = Release|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Sviluppo|Any CPU.ActiveCfg = Release|Any CPU
+		{082A7AB0-FCB1-4B7A-87EB-8716A161DD82}.Sviluppo|Any CPU.Build.0 = Release|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Collaudo|Any CPU.ActiveCfg = Release|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Collaudo|Any CPU.Build.0 = Release|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Sviluppo|Any CPU.ActiveCfg = Release|Any CPU
+		{FB48CDC0-79D4-48CA-86B4-1C22946782C7}.Sviluppo|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2787FBB-FCAB-4DD2-A84B-E68AE5772B5B}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 12
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sanartitest:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Fondir.Bacheca.Dom\\Fondir.Bacheca.Dom.csproj
+		SccProjectName1 = Fondir.Bacheca.Dom
+		SccLocalPath1 = Fondir.Bacheca.Dom
+		SccProjectUniqueName2 = Fondir.Bacheca.FE.Dom\\Fondir.Bacheca.FE.Dom.csproj
+		SccProjectName2 = Fondir.Bacheca.FE.Dom
+		SccLocalPath2 = Fondir.Bacheca.FE.Dom
+		SccProjectUniqueName3 = Fondir.Bacheca.WebUI\\Fondir.Bacheca.WebUI.csproj
+		SccProjectName3 = Fondir.Bacheca.WebUI
+		SccLocalPath3 = Fondir.Bacheca.WebUI
+		SccProjectUniqueName4 = Fondir.Bacheca.FE.WebUI\\Fondir.Bacheca.FE.WebUI.csproj
+		SccProjectName4 = Fondir.Bacheca.FE.WebUI
+		SccLocalPath4 = Fondir.Bacheca.FE.WebUI
+		SccProjectUniqueName5 = Fondir.Bacheca.WebUI.Helper\\Fondir.Bacheca.WebUI.Helper.csproj
+		SccProjectName5 = Fondir.Bacheca.WebUI.Helper
+		SccLocalPath5 = Fondir.Bacheca.WebUI.Helper
+		SccProjectUniqueName6 = SetupConfiguration\\SetupConfiguration.csproj
+		SccProjectName6 = SetupConfiguration
+		SccLocalPath6 = SetupConfiguration
+		SccProjectUniqueName7 = Fondir.PiattaformaUnica.WebUI\\Fondir.PiattaformaUnica.WebUI.csproj
+		SccProjectName7 = Fondir.PiattaformaUnica.WebUI
+		SccLocalPath7 = Fondir.PiattaformaUnica.WebUI
+		SccProjectUniqueName8 = Fondir.Annualita.FE.DOM\\Fondir.Annualita.FE.DOM.csproj
+		SccProjectName8 = Fondir.Annualita.FE.DOM
+		SccLocalPath8 = Fondir.Annualita.FE.DOM
+		SccProjectUniqueName9 = ConsoleApp1\\ConsoleApp1.csproj
+		SccProjectName9 = ConsoleApp1
+		SccLocalPath9 = ConsoleApp1
+		SccProjectUniqueName10 = RazorEngineServices\\RazorEngineServices.csproj
+		SccProjectName10 = RazorEngineServices
+		SccLocalPath10 = RazorEngineServices
+		SccProjectUniqueName11 = Rotativa.MVC\\Rotativa.MVC.csproj
+		SccProjectName11 = Rotativa.MVC
+		SccLocalPath11 = Rotativa.MVC
+	EndGlobalSection
+EndGlobal

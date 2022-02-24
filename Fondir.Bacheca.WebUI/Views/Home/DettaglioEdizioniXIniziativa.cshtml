@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Fondir.Bacheca.Dom.Entities.DettaglioEdizioniXIniziativa>
+
+@functions
+{
+    Func<string, string> coreggiIndirizz = delegate (string a)
+    {
+        if (!string.IsNullOrWhiteSpace(a))
+        {
+            return a.Replace(",", " ").Trim();
+        }
+
+        return a;
+    };
+}
+
+
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <strong>Edizioni non ancora definite.</strong>
+    </div>
+    return;
+}
+
+<table class="table table-bordered table-striped table-hover">
+    <tr style="color: white;">
+        <th style="background-color: #134b89;">
+            <b>Edizione</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Data Inizio</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Data Fine</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Indirizzo</b>
+        </th>
+        @*<th style="background-color: #134b89;">
+            <b>CAP</b>
+        </th>*@
+        <th style="background-color: #134b89;">
+            <b>Località</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Provincia</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Regione</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Piattaforma</b>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.numero_edizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data_inizio_edizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data_fine_edizione)
+            </td>
+            <td>
+                @coreggiIndirizz(item.indirizzo)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.cap)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.localita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codice_provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.regione)
+            </td>
+            @if (string.IsNullOrEmpty(item.LinkNew))
+            {
+                if (string.IsNullOrEmpty(item.NomePiattaformaNew))
+                {
+                    <td>&nbsp;</td>
+                }
+                else
+                {
+                    <td>@item.NomePiattaformaNew</td>
+                }
+            }
+            else
+            {
+                <td><a href="@item.LinkNew">@item.LinkNew</a></td>
+            }
+        </tr>
+    }
+
+</table>

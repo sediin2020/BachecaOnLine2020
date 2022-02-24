@@ -1,0 +1,56 @@
+
+    @*function OnBegin_ProcessUploadDocumento() {
+        uploadUploadFilePratiche();
+    }
+
+    function uploadUploadFilePratiche() {
+        var form = new FormData(document.getElementById('formUpload'));//$('#formUpload');
+
+        $.ajax({
+            url: "@Url.Action("ProcessUploadDocumento", "Formulario", new { id = Model.RichiestaID })",  //Server script to process data
+            type: 'POST',
+            xhr: function () {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Check if upload property exists
+                    //myXhr.upload.onprogress = progressHandlingFunction
+                    myXhr.upload.addEventListener('progress', progressHandlingFunction,
+                        false); // For handling the progress of the upload
+                }
+                return myXhr;
+            },
+            //Ajax events
+            success: function (data) {
+                if (data.isValid) {
+                    $("#esitoProcessUploadDocumento").html(getAlert_Success(data.esito));
+                    getViewRichiesta("DatiDocumenti");
+                    enableAllBtn();
+                }
+                else {
+                    enableAllBtn();
+                    $("#esitoProcessUploadDocumento").html(getAlert_Danger(data.esito));
+                }
+            },
+            error: function (e) {
+                debugger;
+                alert(e.statusText)
+            },
+           // complete: completeHandler,
+            // Form data
+            data: form,
+            //Options to tell jQuery not to process data or worry about content-type.
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+    }
+
+    function progressHandlingFunction(e) {
+        //var percentComplete = Math.round(e.loaded * 100 / e.total);
+        //$('.progress').text(percentComplete.toString() + '%');
+        //$('.progress-bar').width(percentComplete.toString() + '%');
+
+        //alert(percentComplete);
+        //alert(e.loaded);
+        //alert(e.total);
+    }*@

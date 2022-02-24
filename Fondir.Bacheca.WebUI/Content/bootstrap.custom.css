@@ -1,0 +1,65 @@
+﻿
+/*.navbar-inverse {
+    background-color: #396192;
+    border-color: #91bcc5;
+}
+
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #91bcc5;
+    }
+
+    .navbar-inverse .navbar-toggle {
+        border-color: #91bcc5;
+    }*/
+
+.selectCOntainer .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:active, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+    border-radius: 14px;
+    margin-top: 10px;
+}
+
+.btn dropdown-toggle {
+    border-radius: 14px;
+}
+
+.badge-error {
+    background-color: #b94a48;
+}
+
+.badge-warning {
+    background-color: #f89406;
+}
+
+.badge-success {
+    background-color: #468847;
+}
+
+.badge-info {
+    background-color: #3a87ad;
+}
+
+.badge-inverse {
+    background-color: #333333;
+}
+
+
+body.modal-open {
+    overflow: hidden;
+}
+
+@media all and (min-width:1040px) {
+
+    .container {
+        max-width: 1040px;
+    }
+
+    .modal-dialog {
+        width: 1040px;
+    }
+}
+@media all and (min-width:1200px) {
+
+
+    .modal-dialog {
+        width: 1140px;
+    }
+}

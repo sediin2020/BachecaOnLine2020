@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Fondir.Bacheca.WebUI.Models.IniziativaViewModel>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPDF.cshtml";
+}
+
+<title>Fondir - Lista Iniziative</title>
+
+@if (Model.Count() == 0 || Model == null)
+{
+    <hr />
+
+    <div class="clearfix"></div>
+
+    <div class="alert alert-danger" role="alert">
+        <strong>Nessuna iniziativa trovata!</strong>
+    </div>
+
+    return;
+}
+
+
+<table class="table table-hover">
+    <tr>
+
+
+        <th>
+            CodiceIniziativa
+        </th>
+
+        <th>
+            Tipo
+        </th>
+
+        <th>
+            Titolo
+        </th>
+
+        <th>
+            Struttura
+        </th>
+
+        <th>
+            Periodo
+        </th>
+
+        @*<th>
+            Luogo
+        </th>*@
+
+       
+
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodiceIniziativa)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Titolo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Struttura)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Periodo)
+            </td>
+
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Luogo)
+            </td>*@
+
+        
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Fondir.Bacheca.Dom.Entities.DettaglioModuliXIniziativa>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <strong>Moduli non presenti.</strong>
+    </div>
+    return;
+}
+<table class="table table-bordered table-striped table-hover">
+    <tr style="color: white;">
+        <th style="background-color: #134b89;">
+            <b>Titolo</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Metodologia Formativa</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>Ore</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>(FAD) Modalità in cui si realizzera interazione didattica</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>(FAD) Media Utilizzati</b>
+        </th>
+        <th style="background-color: #134b89;">
+            <b>(FAD) Modalità di valutazione dell'aprendimento da parte di ciascun discente</b>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titolo_modulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.metodologia_formativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.durata_ore)
+            </td>
+            <td>
+                @if (item.argomento_1 != "")
+                {
+                    @Html.DisplayFor(modelItem => item.argomento_1)
+                }
+            </td>
+            <td>
+                @if (item.argomento_2 != "")
+                {
+                    @Html.DisplayFor(modelItem => item.argomento_2)
+                }
+            </td>
+            <td>
+                @if (item.argomento_3 != "")
+                {
+                    @Html.DisplayFor(modelItem => item.argomento_3)
+                }
+            </td>
+        </tr>
+    }
+
+</table>

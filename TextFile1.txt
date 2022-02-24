@@ -1,0 +1,209 @@
+@model Fondir.Bacheca.FE.WebUI.Models.Iniziative_Richiesta_Step_1_Model
+
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        Protocollo n. <strong><span class="text-muted">4711/2017</span></strong> del <strong><span class="text-muted">@DateTime.Now.ToShortDateString()</span></strong>
+
+    </div>
+
+    <div class="col-md-6">
+
+        @*@{
+                Html.RenderPartial("~/Views/Shared/LegentAlert");
+            }*@
+
+
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<br />
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="form-control control-group">
+
+        <fieldset>
+            <legend class="lead">Dati richiesta</legend>
+
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label>Titolo</label>
+                        @Html.EditorFor(model => model.Titolo, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                        @*@Html.ValidationMessageFor(model => model.Titolo, "", new { @class = "text-danger" })*@
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label>Settore di riferimento</label>
+
+                        <div class="text-muted">- CREDITIZIO-FINANZIARIO</div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label>Tipologia del Piano</label>
+
+                        <div class="text-muted">- INDIVIDUALE</div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="form">
+                        <label>Tipologia dell'accordo  </label>
+
+                        <small class="text-muted ml-3 mark"><em>indicare sia la parte sindacale che quella datoriale</em></small>
+
+                        <br />
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+                            <div class="col-md-4 d-flex p-2" style="margin-left:20px">
+                                <blockquote class="blockquote">
+                                    <strong class="text-danger">Parte Sindacale</strong>
+
+                                    <p style="margin-top:10px">
+                                        @foreach (var item in Html.SelectListTipologiaAccordi_Sindacale())
+                                        {
+
+
+                                        <div class="radio radio-info radio-circle">
+                                            <input class="styled" name="Accordo_TipologiaSindacaleID" id="Accordo_TipologiaSindacaleID_@item.Value" type="radio" value="@item.Value">
+                                            <label for="Accordo_TipologiaSindacaleID_@item.Value">
+                                                @item.Text
+                                            </label>
+                                        </div>
+
+           }
+                                    </p>
+                                    @Html.ValidationMessageFor(model => model.Accordo_TipologiaSindacaleID, "", new { @class = "text-danger" })
+                                </blockquote>
+
+                            </div>
+                            <div class="col-md-6 d-flex p-2">
+
+                                <blockquote class="blockquote">
+                                    <strong class="text-success">Parte Imprenditoriale</strong>
+
+                                    <p style="margin-top:10px">
+                                        @foreach (var item in Html.SelectListTipologiaAccordi_Imprenditoriale())
+                                        {
+                                            <div class="radio radio-info radio-circle">
+                                                <input type="radio" name="Accordo_TipologiaImprenditorialeID" id="Accordo_TipologiaImprenditorialeID_@item.Value" value="@item.Value" />
+                                                <label for="Accordo_TipologiaImprenditorialeID_@item.Value">@item.Text</label>
+                                            </div>
+                                        }
+                                    </p>
+                                    @Html.ValidationMessageFor(model => model.Accordo_TipologiaImprenditorialeID, "", new { @class = "text-danger" })
+
+
+                                </blockquote>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label>Accordo sottoscritto da</label>
+
+                        <small class="text-muted ml-3 mark"><em>(indicare le parti sociali firmatarie ed allegare l’accordo). In caso di accordo quadro, indicare la data dell’accordo e non allegare documento</em></small>
+
+                        <br />
+                        <div class="clearfix"></div>
+
+                        <div class="form-group">
+                            <div class="text-muted">Sottoscritto</div>
+                            <div class="clearfix" style="margin-bottom:10px"></div>
+                            @Html.EditorFor(model => model.Accordo_Sottiscritto, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+
+                    <div class="form">
+                        <label>Tipologia del Presentatore</label>
+
+                        <br />
+                        <div class="clearfix"></div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-md-12" style="margin-left:20px; margin-top:10px">
+                                <blockquote class="blockquote">
+
+                                    @foreach (var item in Html.SelectListTipologiaPresentatore())
+                                    {
+                                        <div class="radio radio-info radio-circle">
+                                            <input type="radio" name="TipologiaPresentatoreID" id="tipologiaPresentatoreID_@item.Value" value="@item.Value" />
+                                            <label for="tipologiaPresentatoreID_@item.Value">@item.Text</label>
+                                        </div>
+                                            <div class="clearfix"></div>
+                                    }
+
+                                    @Html.ValidationMessageFor(model => model.TipologiaPresentatoreID, "", new { @class = "text-danger" })
+
+
+                                </blockquote>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <button type="submit" value="inviaaaaaaaaaa"></button>
+
+        </fieldset>
+
+
+
+    </div>
+
+
+}

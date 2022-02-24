@@ -1,0 +1,711 @@
+﻿@model  Fondir.Bacheca.WebUI.Models.IniziativaRicercaModel
+
+@*@Ajax.ActionLink("linkaaaa", "DettaglioIniziativa","Home", new {id = 63 }, new AjaxOptions { OnSuccess= "onsuccess_DettaglioIniziativa" })*@
+
+@using (Ajax.BeginForm("Iniziative", "Home", new { pageIndex = 0, random = false }, new AjaxOptions
+{
+    //HttpMethod = "POST",
+    OnSuccess = "OnSuccess_IniziativeRicerca_Post",
+    OnBegin = "OnBegin_IniziativeRicerca",
+    //OnFailure = "OnError_UpdateEmail"
+
+}, new { id = "formIniziativeRicerca" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="selectCOntainer">
+
+        <div class="col-md-3">
+            <div class="titoliSelect">SETTORE</div>
+            @{
+                var _selectSett = Html.SelectListSettore().ToList();
+                _selectSett.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }
+            @Html.DropDownList("settore", new SelectList(_selectSett, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })
+            @*@Html.DropDownList("settore", Html.SelectListSettore(), new { @class = "selectpicker", borderRadius = "border-radius:14px", multiple = "multiple" })*@
+        </div>
+        <div class="col-md-3">
+            <div class="titoliSelect">TIPO INIZIATIVA</div>
+            @{
+                var _selectTip = Html.SelectListTipoIniziativa().ToList();
+                _selectTip.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }
+            @Html.DropDownList("tipoIniziativa", new SelectList(_selectTip, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })
+            @*@Html.DropDownList("tipoIniziativa", Html.SelectListTipoIniziativa(), new { @class = "selectpicker", borderRadius = "border-radius:14px", multiple = "multiple" })*@
+            @*@{
+                var _select = Html.SelectListTipoIniziativa().ToList();
+                _select.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }*@
+            @*@Html.DropDownList("tipoIniziativa", new SelectList(_select, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })*@
+        </div>
+        <div class="col-md-3">
+            <div class="titoliSelect">AREA TEMATICA</div>
+            @{
+                var _selectAreaTem = Html.SelectListAreaTematica().ToList();
+                _selectAreaTem.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }
+            @Html.DropDownList("areaTematica", new SelectList(_selectAreaTem, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })
+            @*@Html.DropDownList("areaTematica", Html.SelectListAreaTematica(), new { @class = "selectpicker", borderRadius = "border-radius:14px", multiple = "multiple" })*@
+        </div>
+        <div class="col-md-3">
+            <div class="titoliSelect">TEMATICA</div>
+            @{
+                var _selectTem = Html.SelectListTematica().ToList();
+                _selectTem.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }
+            @Html.DropDownList("tematica", new SelectList(_selectTem, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })        
+            @*@Html.DropDownList("tematica", Html.SelectListTematica(), new { @class = "selectpicker", borderRadius = "border-radius:14px", multiple = "multiple" })*@
+        </div>
+        <div class="col-md-3">
+            <div class="titoliSelect">STRUTTURA</div>
+            @Html.DropDownList("strutture", Html.SelectListStrutture(), new { @class = "selectpicker", borderRadius = "border-radius:14px", multiple = "multiple" })
+        </div>
+        <div class="col-md-3">
+            <div class="titoliSelect">COMUNE</div>
+            @{
+                var _selectReg = Html.SelectListRegione().ToList();
+                _selectReg.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }
+            @Html.DropDownList("regione", new SelectList(_selectReg, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })
+            @*@Html.DropDownList("regione", Html.SelectListRegione(), new { @class = "selectpicker", borderRadius = "border-radius:14px", multiple = "multiple" })*@
+        </div>
+        <div class="col-md-3">
+            <div class="titoliSelect">SEDE DIDATTICA</div>
+            @{
+                var _select = Html.SelectListSede().ToList();
+                _select.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+            }
+            @Html.DropDownList("sedeDidattica", new SelectList(_select, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })
+            @*@Html.DropDownList("sedeDidattica", Html.SelectListSede(), new { @class = "selectpicker", borderRadius = "border-radius:14px" })*@
+        </div>
+        @*<div class="titoliSelect">REGIONE</div>
+        @{
+            _select = Html.SelectListRegione().ToList();
+            _select.Insert(0, new SelectListItem { Text = "Seleziona una voce", Value = "" });
+        }
+        @Html.DropDownList("regione", new SelectList(_select, "value", "text"), new { @class = "selectpicker", borderRadius = "border-radius:14px", title = "Seleziona una voce" })*@
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="titoliSelect">CHIAVE RICERCA</div>
+            @Html.TextBox("ChiaveRicerca", "", new { @class = "form-control input-lg", enabled = true })
+            @*<input type="hidden" id="ChiaveRicerca" name="ChiaveRicerca" value="" />*@
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">&nbsp;</div>
+        <div class="col-md-12">
+            <input type="hidden" id="OrderByFiltri" name="OrderBy" value="CodiceIniziativaNumerico desc" />
+
+            <button type="submit" class="btn btn-primary pull-right visible-lg visible-md  visible-sm" style="border-radius:10px; margin-left:5px" id="btnRicercaInizative">  CERCA  </button>
+
+            <button type="reset" class="btn btn-warning pull-right visible-lg visible-md  visible-sm" style="border-radius:10px" id="btnAzzeraRicercaInizative">  AZZERA  </button>
+
+            <button type="reset" class="btn btn-warning btn-lg visible-xs col-md-12" style="border-radius:10px; width:100%; margin-bottom:5px" id="btnAzzeraRicercaInizative">  AZZERA  </button>
+
+            <button type="submit" class="btn btn-primary btn-lg visible-xs col-md-12" style="border-radius:10px; width:100%" id="btnRicercaInizative">  CERCA  </button>
+
+            <dic class="clearfix"></dic>
+        </div>
+    </div>
+    <hr />
+}
+
+<br />
+
+<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetail-label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalDetail-label">Dettaglio Iniziativa</h4>
+                </div>*@
+            <div class="modal-body">
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var pageIndex = 0;
+
+    var pageCount;
+
+    var hashPaging = false;
+
+    var iniziativeList;
+
+    var random = false;
+
+    var scroll = true;
+
+    var $_form = $("<form></form>");
+
+    var isLoadingRecords = false;
+
+    $().ready(function () {
+
+        OnBegin_IniziativeRicerca();
+
+        iniziativeList = new Array();
+
+        setTimeout(getRecords, 250);
+
+        $(".btnView").popover();
+
+        $("#resultSelectIniziative").html("");
+
+        $('#btnAzzeraRicercaInizative').click(deselectAllInput);
+
+        $(".btnView").click(function () {
+
+            if ($("#view").val() != $(this).data("view")) {
+
+                $("#view").val($(this).data("view"));
+
+                $("#resultSelectIniziative").html("");
+
+                for (var i = 0; i < iniziativeList.length; i++) {
+                    fillResultSelectIniziative(iniziativeList[i], i);
+                }
+            }
+        });
+
+        checkSizeCSS();
+
+    });
+
+    function checkSizeCSS() {
+        if (!Modernizr.mq('(min-width: 768px)')) {
+            $('#strutture').selectpicker("destroy");
+            $('#settore').selectpicker("destroy");
+            $('#tipoIniziativa').selectpicker("destroy");
+            $('#areaTematica').selectpicker("destroy");
+            $('#tematica').selectpicker("destroy");
+            $('#regione').selectpicker("destroy");
+            $('#sedeDidattica').selectpicker("destroy");
+            $('#OrderBy').selectpicker("destroy");
+
+            $('#strutture').addClass("form-control");
+            $('#settore').addClass("form-control");
+            $('#tipoIniziativa').addClass("form-control");
+            $('#areaTematica').addClass("form-control");
+            $('#tematica').addClass("form-control");
+            $('#regione').addClass("form-control");
+            $('#sedeDidattica').addClass("form-control");
+            $('#OrderBy').addClass("form-control");
+        }
+        else {
+            $('#strutture').removeClass("form-control");
+            $('#settore').removeClass("form-control");
+            $('#tipoIniziativa').removeClass("form-control");
+            $('#areaTematica').removeClass("form-control");
+            $('#tematica').removeClass("form-control");
+            $('#regione').removeClass("form-control");
+            $('#sedeDidattica').removeClass("form-control");
+            $('#OrderBy').removeClass("form-control");
+
+            $('#strutture').selectpicker();
+            $('#settore').selectpicker();
+            $('#tipoIniziativa').selectpicker();
+            $('#areaTematica').selectpicker();
+            $('#tematica').selectpicker();
+            $('#regione').selectpicker();
+            $('#sedeDidattica').selectpicker();
+            $('#OrderBy').selectpicker();
+        }
+    }
+
+    $(window).resize(function () {
+        checkSizeCSS();
+    });
+
+    function loadingStatusAjaxRequest() {
+        var _t = "<div><p><center><img class=\"img-responsive\" src=\"" + "@Url.Content("~/Content/images/lg.comet-spinner.gif")" + "\" alt=\"Caricamento in corso...\" /></center></p></div>";//<br/><center><h5 class='text-danger'>Caricamento dati in corso...</h5></center></div>";
+        return _t;
+    }
+
+    function createInput(name, value) {
+        return $('<input>').attr({
+            name: name,
+            value: value
+        });
+    }
+
+    function getRecords() {
+        try {
+
+            if (isLoadingRecords)
+                return;
+
+            $("#OrderByFiltri").val($("#OrderBy").val());
+
+            var $_formTeml = $_form;
+
+            $_form = $("<form></form>");
+
+            $.each($_formTeml.serializeArray(), function (i, field) {
+                if (field.name != "OrderBy" && field.name != "pageIndex") {
+                    $_form.append(createInput(field.name, field.value));
+                }
+            })
+
+            $_form.append(createInput("random", random));
+            $_form.append(createInput("pageIndex", pageIndex));
+            $_form.append(createInput("OrderBy", $("#OrderBy").val()));
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Iniziative")",
+                data: $_form.serialize(), // { "pageIndex": pageIndex , random: random },
+                success: function (data) {
+                    OnSuccess_IniziativeRicerca(data);
+                },
+                beforeSend: function () {
+                    clearTimeout(_getRecords);
+                    isLoadingRecords = true;
+                    $("#loaderSelectIniziative").show();
+                },
+                failure: function (response) {
+                    $("#resultSelectIniziative").html(response.d);
+                    $("#loaderSelectIniziative").hide();
+                },
+                error: function (response) {
+                    $("#resultSelectIniziative").html(response.d);
+                    $("#loaderSelectIniziative").hide();
+                }
+            });
+
+        } catch (e) {
+            alert(e.description);
+        }
+    }
+
+
+    var _getRecords;
+
+    function loadRecords() {
+        try {
+           // if (pageIndex == 0 || parseInt(pageIndex) < parseInt(pageCount)) {
+            if (hashPaging) {
+                $("#loaderSelectIniziative").show();
+                getRecords();
+            }
+        } catch (e) {
+            alert(e.description);
+        }
+    }
+
+    function OnBegin_IniziativeRicerca() {
+
+        clearTimeout(_getRecords);
+
+        var _tipoIniziativa = "";
+
+        loadingIniziativeContainer("Ricerca iniziative in corso...");
+
+        $_form = $("<form></form>");
+
+        $.each($('#formIniziativeRicerca').serializeArray(), function (i, field) {
+            $_form.append(createInput(field.name, field.value));
+
+            if (field.name == "tipoIniziativa") {
+                _tipoIniziativa = field.value;
+            }
+        })
+
+        setMenuInnerDiv(_tipoIniziativa);
+    }
+
+    function filtraTipologia(tipoiniziativaId) {
+
+        setMenuInnerDiv(tipoiniziativaId);
+
+        deselectAllInput();
+
+        $('#tipoIniziativa').selectpicker('val', tipoiniziativaId);
+
+        $('#btnRicercaInizative').click();
+    }
+
+    function deselectAllInput() {
+        $('#strutture').selectpicker('deselectAll');
+        $('#settore').selectpicker('val', '');
+        //$('#settore').selectpicker('deselectAll');
+        $('#areaTematica').selectpicker('val', '');
+        //$('#areaTematica').selectpicker('deselectAll');
+        $('#tematica').selectpicker('val', '');
+        //$('#tematica').selectpicker('deselectAll');
+        $('#tipoIniziativa').selectpicker('val', '');
+        $('#regione').selectpicker('val', '');
+        $('#sedeDidattica').selectpicker('val', '');
+        //$('#sedeDidattica').selectpicker("deselectAll");
+    }
+
+    function setMenuInnerDiv(tipoiniziativaId) {
+        $('.innerdivs').removeClass('innerdivsSelected');
+        $('.innerdivs').filter('[data-tipoogia="' + tipoiniziativaId + '"]').addClass('innerdivsSelected');
+    }
+
+    function OnSuccess_IniziativeRicerca_Post(data) {
+
+        scrollAfterLoading();
+
+        iniziativeList = new Array();
+
+        $("#resultSelectIniziative").html("");
+
+        $("#titoliRicerca").html("Iniziative trovate...");
+
+        OnSuccess_IniziativeRicerca(data);
+
+        random = false;
+
+        //scroll = parseInt(pageIndex) < parseInt(pageCount);
+
+        //scroll = false;
+    }
+
+    function scrollAfterLoading() {
+        setTimeout(function () {
+            if (!Modernizr.mq('(min-width: 768px)')) {
+                scrollToElementId("totaleSelectIniziative");
+            }
+            else {
+                scrollToElementId("menuTipoiniziativa");
+            }
+        }, 1);
+    }
+
+    function OnSuccess_IniziativeRicerca(data) {
+
+        pageIndex = data.pageIndex;
+
+        pageCount = data.pageCount;
+
+        hashPaging = data.hashPaging;
+
+        if (data.iniziative.length > 0) {
+
+            $("#totaleSelectIniziative").html("<em class=''>Iniziative trovate:</em> " + data.totaleRecord + "<br/><br/>");
+            //$("#totaleSelectIniziative").html("<em class=''>Iniziative trovate:</em> <span class='badge badge-info'>" + data.totaleRecord + "</span><br/><br/>");
+
+            for (var i = 0; i < data.iniziative.length; i++) {
+
+                iniziativeList.push(data.iniziative[i]);
+
+                fillResultSelectIniziative(data.iniziative[i], i);
+            }
+            // alert(iniziativeList.length);
+
+            $("#containerLoading").html("");
+
+            $("#loaderSelectIniziative").hide();
+
+            $("#containerResultIniziative").show();
+
+            $(window).on("mousewheel DOMMouseScroll keyup keydown", function (e) {
+
+                if (scroll && (parseInt($(window).scrollTop())) >= $(document).height() - $(window).height() - 50) {
+                    _getRecords = setTimeout(loadRecords, 250);
+                }
+            });
+
+            $(document).on('scroll', function () {
+                if (scroll && parseInt($(window).scrollTop()) == $(document).height() - $(window).height()) {
+                    _getRecords = setTimeout(loadRecords, 250);
+                }
+            });
+        }
+
+        if (data.iniziative.length == 0 && data.totaleRecord==0)  {
+            $("#containerResultIniziative").hide();
+
+            var _result = "";
+
+            _result += "<div class=\"titoliRicerca\">";
+            _result += "Ricerca iniziative...";
+            _result += "</div>";
+
+            _result += "<div class=\"clearfix\"></div><br/><p>";
+
+            _result += "<div class=\"alert alert-danger\" role=\"alert\">";
+            _result += "<strong>La ricerca non ha prodotto nessun risultato. <br />Prova con altri criteri di ricerca.</strong></p>";
+            _result += "</div>";
+
+            $("#containerLoading").html(_result);
+        }
+
+        isLoadingRecords = false;
+
+        scroll = data.hashPaging;// parseInt(pageIndex) < parseInt(pageCount);
+    }
+
+    function loadingIniziativeContainer(text) {
+        $("#containerResultIniziative").hide();
+
+        $("#resultSelectIniziative").html("");
+
+        var _h = "<div class=\"titoliRicerca\">" + text + "</div><br/><br/><br/><br/>";
+
+        _h += "<p>" + loadingStatusAjaxRequest() + "</p><br/><br/>";
+
+        $("#containerLoading").html(_h);
+
+        //scroll = false;
+    }
+
+    function fillResultSelectIniziative(data, index) {
+        if ($("#view").val() == "IniziativeDataList") {
+            $("#resultSelectIniziative").append(dataListItem(data, index));
+        }
+
+        if ($("#view").val() == "IniziativeList") {
+            $("#resultSelectIniziative").append(listItem(data, index));
+        }
+    }
+
+    function dataListItem(iniziativa, index) {
+
+        var _url = "@Url.Action("DettaglioIniziativa", "Home")/" + iniziativa.IniziativaID;
+
+        var _dataList = "";
+
+        _dataList += "<a class=\"btnDettaglioIniziativa\" data-ajax=\"true\" data-ajax-begin=\"onbegin_DettaglioIniziativa\" data-ajax-success=\"onsuccess_DettaglioIniziativa\" href=\"" + _url + "\" style=\"text-decoration:none\">";
+
+        _dataList += "<div  class=\"col-md-4 iniziativaDatalist btnDettaglioIniziativa\">";
+        _dataList += "<div class=\"iniziativaDatalistItem\">";
+
+        _dataList += "<div class=\"col md-12 dataItemImage\" >";
+
+        _dataList += "<div class=\"" + getItemImage(iniziativa.TipoInizitivaID, "") + "\"></div>";
+
+        _dataList += "</div>";
+
+        _dataList += "<div class=\"col md-12 dataItemContent\">";
+
+        _dataList += "<div class=\"row\">";
+
+        _dataList += "<div class=\"col-md-8\"><div class=\"iniziativaTipo\">" + iniziativa.Tipo + "</div></div>";
+
+        if (iniziativa.CodiceIniziativa != null)
+            _dataList += "<div class=\"col-md-4\" style=\"padding-right:10px\"><label class=\"label label-sm label-warning\">" + iniziativa.CodiceIniziativa + "</label></div>";
+
+        _dataList += "</div>";
+
+        _dataList += "<div class=\"clearfix\"></div>";
+        _dataList += "<div class=\"iniziativaTitolo\">" + iniziativa.Titolo + "</div>";
+        _dataList += "<div class=\"clearfix\"></div>";
+
+        _dataList += "<div class=\"iniziativaFooter\">";
+
+        _dataList += "<div class=\"iniziativaPeriodo\">" + iniziativa.Periodo + "</div>";
+        _dataList += "<div class=\"clearfix\"></div>";
+        _dataList += "<div class=\"iniziativaStruttura\">" + iniziativa.Struttura + "</div>";
+        _dataList += "<div class=\"clearfix\"></div>";
+
+        _dataList += "</div>";
+
+
+
+        _dataList += "</div>";
+        _dataList += "</div>";
+        _dataList += "</div>";
+        _dataList += "</a>";
+
+        return _dataList;
+    }
+
+    function listItem(iniziativa, index) {
+
+        var _url = "@Url.Action("DettaglioIniziativa", "Home")/" + iniziativa.IniziativaID;
+
+        var _dataList = "";
+
+        _dataList += "<a class=\"btnDettaglioIniziativa\" data-ajax=\"true\" data-ajax-begin=\"onbegin_DettaglioIniziativa\" data-ajax-success=\"onsuccess_DettaglioIniziativa\" href=\"" + _url + "\" style=\"text-decoration:none\">";
+
+        _dataList += "<div class=\"col-md-12 btnDettaglioIniziativa\" style=\"height:100%; padding-bottom:10px;padding-right:10px; \">";
+
+        _dataList += "<div class=\"iniziativaListItem\">";
+
+        _dataList += "<div class=\"col-md-4 dataItemImage\" style=\"padding-left:0\">";
+
+        _dataList += "<div class=\"" + getItemImage(iniziativa.TipoInizitivaID, "_2") + "\"></div>";
+
+        _dataList += "</div>";
+
+        _dataList += "<div class=\"col-md-8 dataItemContent\">";
+
+        _dataList += "<div class=\"row\">";
+
+        _dataList += "<div class=\"col-md-9\"><div class=\"iniziativaTipo\">" + iniziativa.Tipo + "</div></div>";
+
+        if (iniziativa.CodiceIniziativa != null)
+            _dataList += "<div class=\"col-md-2\" style=\"padding-right:10px\"><label class=\"label label-sm label-danger\">" + iniziativa.CodiceIniziativa + "</label></div>";
+
+        _dataList += "</div>";
+
+        _dataList += "<div class=\"clearfix\"></div>";
+
+        _dataList += "<div class=\"iniziativaTitolo_2\">" + iniziativa.Titolo + "</div>";
+        _dataList += "<div class=\"clearfix\"></div>";
+
+        _dataList += "<div class=\"iniziativaFooter_2\">";
+
+        _dataList += "<div class=\"iniziativaPeriodo\">" + iniziativa.Periodo + "</div>";
+        _dataList += "<div class=\"clearfix\"></div>";
+
+        _dataList += "<div class=\"iniziativaStruttura_2\">" + iniziativa.Struttura + "</div>";
+        _dataList += "<div class=\"clearfix\"></div>";
+
+        _dataList += "</div>";
+
+
+        _dataList += "</div>";
+        _dataList += "</div>";
+        _dataList += "</div>";
+        _dataList += "</a>";
+
+        return _dataList;
+    }
+
+    function getItemImage(tipoInizitivaID, type) {
+        var _image = "";
+
+        //one to one
+        if (tipoInizitivaID == 1)
+            _image = "iniziativaImmagine_onetoone" + type;
+
+        //workshop
+        if (tipoInizitivaID == 2)
+            _image = "iniziativaImmagine_workshop" + type;
+
+        //formazione
+        if (tipoInizitivaID == 3)
+            _image = "iniziativaImmagine_formazione" + type;
+
+        return _image;
+    }
+
+
+    function orderRecords() {
+
+        $("#OrderByFiltri").val($("#OrderBy").val());
+
+        scrollAfterLoading();
+
+        var _scroll = scroll;
+
+        iniziativeList = new Array();
+
+        loadingIniziativeContainer("Attendere...");
+
+        var $_formTeml = $_form;
+
+        $_form = $("<form></form>");
+
+        $.each($_formTeml.serializeArray(), function (i, field) {
+            if (field.name != "OrderBy" && field.name != "pageIndex") {
+                $_form.append(createInput(field.name, field.value));
+            }
+        })
+
+        pageIndex = 0;
+
+        scroll = _scroll;
+
+        setTimeout(getRecords, 250);
+    }
+
+    function onsuccess_DettaglioIniziativa(data) {
+        $("#modalDetail .modal-body").html(data);
+        $("#modalDetail").modal("show");
+    }
+
+    function onbegin_DettaglioIniziativa() {
+        $("#modalDetail .modal-body").html(loadingStatusAjaxRequest());
+        $("#modalDetail").modal("show");
+    }
+
+    function salvaPDF() {
+
+        var _query = "";
+
+        $.each($_form.serializeArray(), function (i, field) {
+            if (field.name != "pageIndex") {
+                _query += field.name + "=" + field.value + "&";
+            }
+        });
+
+        var _url = "@Url.Action("IniziativePDF", "Home")";
+
+        window.open(_url + "?" + _query);
+    }
+
+    @*function orderArray() {
+        try {
+
+            var _json = '[';
+
+            for (var i = 0; i < iniziativeList.length; i++) {
+
+                var _iniziativa = iniziativeList[i];
+
+                _json += '{ ' +
+                 '"CodiceIniziativa":"' + _iniziativa.CodiceIniziativa + '" , ' +
+                 '"IniziativaID":"John" , ' +
+                 '"Tipo":"John" , ' +
+                 '"Titolo":"John" , ' +
+                 '"Luogo":"John" , ' +
+                 '"Periodo":"John" , ' +
+                 '"TipoInizitivaID":"John" , ' +
+                 '"StrutturaID":"John" , ' +
+                 '"TematicaID":"John" , ' +
+                 '"RegioneID":"' + _iniziativa.RegioneID + '" ' +
+
+                 '}';
+
+                if (i < iniziativeList.length - 1)
+                    _json += ',';
+
+            }
+
+            _json += ']';
+
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("OrderBy")",
+                data: { "json": _json },
+                success: function (data) {
+                    //OnSuccess_IniziativeRicerca(data);
+                    alert(data);
+                },
+                beforeSend: function () {
+                    //$("#loaderSelectIniziative").show();
+                },
+                failure: function (response) {
+                    //$("#resultSelectIniziative").html(response.d);
+                    //$("#loaderSelectIniziative").hide();
+                },
+                error: function (response) {
+                    //$("#resultSelectIniziative").html(response.d);
+                    //$("#loaderSelectIniziative").hide();
+                }
+            });
+
+
+        } catch (e) {
+            alert(e.description);
+        }
+
+
+    }*@
+
+
+</script>

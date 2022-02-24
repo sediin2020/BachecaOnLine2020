@@ -1,0 +1,20 @@
+@*@foreach (var item in Model.DatiIniziative.ToList())
+{*@
+    <a href="#Iniziative"></a>
+
+    @*var _datiIniziativa = new RawString(RazorEngineServices.RazorEngineProvider.GetHTMLFromControllerAction("Iniziative/StampaPDF", "DatiIniziativa", item));
+
+    @_datiIniziativa*@
+
+    <div style="page-break-after:always"></div>
+@*}*@
+
+<a href="#Preventivo"></a>
+@*@{Html.RenderPartial("~/Views/Iniziative/StampaPDF/DatiQuadroSintesiIniziative.cshtml", Model.DatiQuadroSintesiIniziative);}*@
+<div style="page-break-after:always"></div>
+
+@*@{Html.RenderPartial("~/Views/Iniziative/StampaPDF/DatiQuadroSintesiBeneficiarie.cshtml", Model.DatiQuadroSintesiBeneficiarie);}*@
+<div style="page-break-after:always"></div>
+
+<a href="#Riepilogo"></a>
+@*@{Html.RenderPartial("~/Views/Iniziative/StampaPDF/DatiRiepilogo.cshtml", Model.DatiRiepilogo);}*@

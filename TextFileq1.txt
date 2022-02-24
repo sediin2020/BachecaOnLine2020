@@ -1,0 +1,2 @@
+<input name="LegaleRappresentante" 
+class="form-control col-md-10 text-box single-line form-control-success" id="LegaleRappresentante" aria-invalid="false" aria-required="true" aria-describedby="LegaleRappresentante-error" type="text" value="" data-val-required="Il campo Legale Rappresentante è obbligatorio." data-val-maxlength-max="100" data-val-maxlength="Il campo Legale Rappresentante deve essere di tipo stringa o matrice con una lunghezza massima di '100'." data-val="true">

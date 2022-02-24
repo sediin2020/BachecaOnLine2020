@@ -1,0 +1,207 @@
+       <li>
+
+                    Il possesso di tutti i requisiti previsti dal Regolamento UE&nbsp;<strong>@Model.CertificazioneRendicontoRichiesta.RegolamentoUE</strong>&nbsp;applicato dall’azienda beneficiaria in relazione al contributo richiesto a consuntivo;
+
+                </li>
+                <li>
+
+                    che le risultanze del lavoro svolto sono le seguenti:
+
+                </li>
+
+
+
+
+
+
+
+
+
+				<div class="col.-md-12">
+        <div class="text-center mt-3">
+            <strong class="text-uppercase">Premesso</strong>
+        </div>
+
+        <div class="nowraplabel mt-4">
+            <ul>
+                <li>
+
+                    che risultano esposte nel rendiconto esaminato le seguenti voci di spesa:
+                </li>
+
+            </ul>
+
+            <div class="mt-5">
+
+                <table class="table table-bordered table-hover mt-5">
+
+
+                    <tr>
+                        <th class="table-fondir text-center" ">Voci di spesa</th>
+                        <th class="table-fondir text-center" ">Contributo Fondir</th>
+                        <th class="table-fondir text-center" ">Contributo Privato</th>
+                        <th class="table-fondir text-center" ">Totale</th>
+                    </tr>
+
+                    @foreach (var item in Model.VocispesaFinanziarioRichiesta)
+                    {
+                        <tr>
+                            <td>
+
+                                @item.VoceSpesa
+
+                            </td>
+                            <td class="text-right">@Html.ToCurrency(item.ContributoFondirPreventivato)</td>
+                            <td class="text-right">@Html.ToCurrency(item.ContributoPrivatoPreventivato)</td>
+                            <td class="text-right">
+
+                                @Html.ToCurrency(item.ContributoFondirPreventivato + item.ContributoPrivatoPreventivato)
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </table>
+
+            </div>
+
+
+
+            <ul class="mt-5">
+
+
+                <li>
+
+                    che gli importi imputati alle predette voci di spesa sono stati determinati in base ai costi ammissibili previsti dagli Avvisi 1/2017, con le modalità stabilite nei seguenti documenti:
+                    ­
+                    <div class="offset-1 mt-1">
+                        "Avviso 1/2017 - Accesso alla bacheca di iniziative di formazione continua per i dirigenti delle imprese iscritte a FONDIR del comparto Creditizio-Finanziario e Assicurativo"
+                    </div>
+                    <div class="offset-1 mt-1 mb-2">
+                        "Guida alla gestione e rendicontazione dei piani formativi individuali – Accesso alla Bacheca FONDIR"
+                    </div>
+
+
+
+                </li>
+
+
+                <li>
+                    che le spese relative al costo del lavoro dei dirigenti coinvolti sono state rendicontate sulla base dei costi reali contabilizzati, sostenuti e documentati dall’Azienda
+                </li>
+
+            </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="mt-5">
+
+                <table class="table table-bordered table-hover">
+
+
+                    <tr>
+                        <th class="table-fondir text-center">Codice Iniziativa</th>
+                        <th class="table-fondir text-center" ">Contributo Fondir</th>
+                        <th class="table-fondir text-center" ">Contributo Privato</th>
+                        <th class="table-fondir text-center" ">Rilievi</th>
+                    </tr>
+
+                    @foreach (var item in Model.CertificazioneRendicontoIniziative)
+                    {
+
+                        <tr>
+
+                            <td>
+
+
+                                @item.CodiceIniziativa
+
+
+                            </td>
+                            <td class="text-right">@Html.ToCurrency(item.ContributoFondir)</td>
+                            <td class="text-right">@Html.ToCurrency(item.ContributoPrivato)</td>
+                            <td>
+
+                                <div class="custom-controls-stacked">
+
+                                    <label class="custom-control custom-radio col-md-12">
+
+                                        @Html.RadioButtonFor(m => item.CheckRilievi, false,
+                                                                                           new { @class = "custom-control-input radiocheckrilievi" })
+
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description text-dark">
+                                            Nessun rilievo da effettuare.
+                                        </span>
+                                    </label>
+
+                                    <label class="custom-control custom-radio col-md-12">
+
+                                        @Html.RadioButtonFor(m => item.CheckRilievi, true,
+                                                                                           new { @class = "custom-control-input radiocheckrilievi" })
+
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description text-dark">
+                                            Vengono effettuati i seguenti rilievi: (esplicitare in modo puntuale i rilievi con riferimento a ciascuna voce di spesa, con i connessi importi e le relative motivazioni)
+                                        </span>
+                                    </label>
+
+                                    @{
+                                        var _c = "display:none";
+                                        if (item.CheckRilievi)
+                                        {
+                                            _c = "";
+                                        }
+                                    }
+
+                                    <div class="col-md-12" style="width:100%; @_c">
+
+                                        <div class="form-group">
+
+                                            @item.DescrizioneRilievi
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>

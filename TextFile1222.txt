@@ -1,0 +1,203 @@
+using Fondir.Bacheca.FE.Dom.Abstract;
+using Fondir.Bacheca.FE.WebUI.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+using Sediin.MVC.HtmlHelpers;
+
+using entitieFEDom = Fondir.Bacheca.FE.Dom.Entities;
+
+namespace Fondir.Bacheca.FE.WebUI.Controllers
+{
+    public class IniziativeController : BaseController
+    {
+        //todo
+        string cf = "04990920961";
+
+        IRichiestaIniziative repositoryRichiestaIniziative;
+        ITipologiaAccordi repositoryTipologiaAccordi;
+        IPresentatoreSoggetto repositoryPresentatoreSoggetto;
+
+        public IniziativeController()
+        {
+        }
+
+        public IniziativeController(ITipologiaAccordi _repositoryTipologiaAccordi, IPresentatoreSoggetto _repositoryPresentatoreSoggetto, IRichiestaIniziative _repositoryRichiestaIniziative)
+        {
+            repositoryTipologiaAccordi = _repositoryTipologiaAccordi;
+            repositoryPresentatoreSoggetto = _repositoryPresentatoreSoggetto;
+            repositoryRichiestaIniziative = _repositoryRichiestaIniziative;
+        }
+
+        // GET: Iniziative
+        public ActionResult Index()
+        {
+            //IniziativeRichiesta_DatiRichiesta model = new IniziativeRichiesta_DatiRichiesta();
+            //return View();
+            var _model = repositoryRichiestaIniziative.SelectRichieste(cf);
+            return View(_model);
+        }
+
+        #region richiesta
+
+        [ChildActionOnly]
+        public PartialViewResult DettaglioPresentatore(string codiceFiscale)
+        {
+            entitieFEDom.PresentatoreSoggetto model = repositoryPresentatoreSoggetto.Detail(cf);
+            return PartialView(GetPathView("DettaglioPresentatore"), model);
+        }
+
+        public ActionResult Richiesta(int? id)
+        {
+            IniziativeRichiesta_Richiesta model = new IniziativeRichiesta_Richiesta();
+            model.RichiestaID = id;
+            
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public PartialViewResult DatiGenerali(int? id)
+        {
+            IniziativeRichiesta_DatiGenerali model = null;
+
+            if (id.HasValue)
+            {
+                //modifica richiesta
+
+            }
+            else
+            {
+                //nuova richiesta
+                //NuovaIniziativaRichiesta();
+            }
+
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public JsonResult DatiGenerali(IniziativeRichiesta_DatiGenerali model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //inserimento o update dati richiesta
+                    var _richiestaID = Handle_DatiGenerali(model);
+
+                    return Json(new { isValid = true, action = "DatiBeneficiari" }, JsonRequestBehavior.AllowGet);
+
+                    //carica dati generali
+                    //IniziativeRichiesta_DatiGenerali _modelDatiGenerali = GetDatiBeneficiari(_richiestaID);
+
+                    //return Json(new { isValid = true, html = PartialView("DatiGenerali").RenderViewToString(_modelDatiGenerali) }, JsonRequestBehavior.AllowGet);
+                }
+
+                throw new Exception("Le infrormazioni emesse sono incomplete e errati!");
+
+            }
+            catch (Exception ex)
+            {
+                return JsonResultError(ex);
+            }
+        }
+
+
+
+        private IniziativeRichiesta_DatiGenerali GetDatiBeneficiari(int? richiestaID)
+        {
+            if (richiestaID.HasValue)
+            {
+                //repositoryRichiestaIniziative.
+                return new IniziativeRichiesta_DatiGenerali();
+            }
+
+            throw new Exception("Dati non trovati");
+        }
+
+        private int Handle_DatiGenerali(IniziativeRichiesta_DatiGenerali model)
+        {
+            try
+            {
+                entitieFEDom.OPE_Richiesta richiesta = new Dom.Entities.OPE_Richiesta();
+                richiesta.AccordoSottoscrittoDa = model.Accordo_Sottiscritto;
+                richiesta.BreveDescrizioneRichiesta = model.DescrizionePiano;
+                richiesta.CodiceFiscale = cf;
+                richiesta.DataInserimentoRichiesta = DateTime.Now;
+
+                //richiesta.DataInvioRichiesta = DateTime.Now;
+
+                //richiesta.DataAvvio = model.DataFine;
+                //richiesta.DataFine = model.DataFine;
+
+                richiesta.IdFinalita = model.FinalitaID;
+
+                //richiesta.IdRichiesta = 0;
+
+                richiesta.IdTipologiaAccordoImprenditoriale = model.Accordo_TipologiaImprenditorialeID;
+                richiesta.IdTipologiaAccordoSindacale = model.Accordo_TipologiaSindacaleID;
+                richiesta.IdTipologiaPresentatore = model.TipologiaPresentatoreID;
+                richiesta.LegaleRappresentantePresentatore = model.LegaleRappresentante;
+                richiesta.Protocollo = "";
+
+                //update
+                if (!model.RichiestaID.HasValue)
+                {
+                    //terrotori
+                    List<entitieFEDom.LK_Richiesta_Territori> _territori = new List<entitieFEDom.LK_Richiesta_Territori>();
+
+                    foreach (var item in model.TerritorioIinteressatiPiano)
+                    {
+                        if (string.IsNullOrWhiteSpace(item))
+                            continue;
+
+                        var _regioneID = ToInt(item.Split('$').FirstOrDefault());
+                        var _codice = item.Split('$').LastOrDefault();
+
+                        if (_regioneID.HasValue)
+                            _territori.Add(new entitieFEDom.LK_Richiesta_Territori() { CodiceProvincia = _codice, IdRegione = _regioneID.GetValueOrDefault() });
+                    }
+
+                    if (_territori.Count() == 0)
+                        throw new Exception("Territori non presneti!");
+
+                    repositoryRichiestaIniziative.Insert(richiesta, _territori);
+                    return richiesta.IdRichiesta;
+                }
+                else
+                {
+                    //edit
+
+                    return 0;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region helper
+
+        string PathRichiesta
+        {
+            get
+            {
+                return "~/Views/Iniziative/Richiesta/";
+            }
+        }
+
+        string GetPathView(string v)
+        {
+            return this.PathRichiesta + v + ".cshtml";
+        }
+
+        #endregion
+    }
+}

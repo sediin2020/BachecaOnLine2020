@@ -1,0 +1,51 @@
+﻿@model Fondir.Bacheca.WebUI.Models.DettaglioIniziativaView
+@{ Layout = null;}
+
+<div class="panel panel-default">
+
+    <div class="panel-body" style="background-color: lightgoldenrodyellow;">
+
+        @{ Html.RenderPartial("DettaglioIniziativa_Dati", Model.Iniziativ); }
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi finestra</button>
+    @*<a class="btn btn-danger" href="@Url.Action("DettaglioIniziativaPDF", new { id = Model.iniziativaID })" target="_blank">Salva come PDF</a>*@
+    <div class="btn-group">
+        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PDF <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li style="text-align: left;"><a href="@Url.Action("DettaglioIniziativaPDF", new { id = Model.Iniziativ.iniziativaID })" target="_blank">Salva scheda PDF</a></li>
+            <li style="text-align: left;"><a target="_blank" href="@Url.Action("ScaricaIniziativaCompleta2020", new {id = Model.Iniziativ.iniziativaID, codiceIniziativa = Model.Iniziativ.codice, nomeFile = Model.Iniziativ.criterio_applicazione_sconti, tipo = Model.Iniziativ.tipo_iniziativa })">Scarica Iniziativa Completa PDF</a></li>
+            @*@{
+                if (Html.IsSettoreCreditizioFinanziario(Model.Iniziativ.comparto))
+                {
+                    <li style="text-align: left;"><a target="_blank" href="@Url.Action("ScaricaIniziativaCompleta", new {id = Model.Iniziativ.iniziativaID, settore = "CF" , uid = Model.Iniziativ.utenteId, tipo = Model.Iniziativ.tipo_iniziativa })">Scarica Iniziativa Completa PDF</a></li>
+                }
+                if (Html.IsSettoreCommercio(Model.Iniziativ.comparto))
+                {
+                    <li style="text-align: left;"><a target="_blank" href="@Url.Action("ScaricaIniziativaCompleta", new {id = Model.Iniziativ.iniziativaID, settore = "CTS", uid = Model.Iniziativ.utenteId, tipo = Model.Iniziativ.tipo_iniziativa   })">Scarica Iniziativa Completa PDF</a></li>
+                }
+                if (Html.IsSettoreEntrambi(Model.Iniziativ.comparto))
+                {
+                    <li style="text-align: left;"><a target="_blank" href="@Url.Action("ScaricaIniziativaCompleta", new {id = Model.Iniziativ.iniziativaID, settore = "CF", uid = Model.Iniziativ.utenteId, tipo = Model.Iniziativ.tipo_iniziativa })">Scarica Iniziativa CF Completa PDF</a></li>
+                    <li style="text-align: left;"><a target="_blank" href="@Url.Action("ScaricaIniziativaCompleta", new { id = Model.Iniziativ.iniziativaID,settore = "CTS", uid = Model.Iniziativ.utenteId, tipo = Model.Iniziativ.tipo_iniziativa   })">Scarica Iniziativa CTS Completa PDF</a></li>
+                }
+
+                var _brochure = Model.Brochure.Where(s => s.idDocumento == 1);
+
+                if (_brochure != null && _brochure.Count() > 0)
+                {
+                    foreach (var item in _brochure)
+                    {
+                        <li style="text-align: left;"><a target="_blank" href="@Url.Action("ScaricaBrochure", new {filename=item.nomeFile })">Scarica Brochure - @item.tipoDocumento</a></li>
+                    }
+                }
+            }*@
+
+
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+        protected override byte[] CallTheDriver(ControllerContext context)
+        {
+            try
+            {
+
+                //Engine.Razor.AddTemplate("EmailStyle", File.ReadAllText(@"C:\Users\g.tuzzolino\source\repos\ProvaRotativaAsync\WebApplication1\Content\bootstrap.css"));
+                //Engine.Razor.Compile("EmailStyle", null);
+
+                Engine.Razor.AddTemplate("About", File.ReadAllText(@"C:\Users\g.tuzzolino\source\repos\ProvaRotativaAsync\WebApplication1\Views\Home\About.cshtml"));
+                Engine.Razor.Compile("About", null);
+
+              var _x=   Engine.Razor.RunCompile("About");
+
+                StringBuilder stringBuilder1 =  new StringBuilder(_x);// stringWriter.GetStringBuilder();
+
+                //string str = string.Format("{0}://{1}", (object)HttpContext.Current.Request.Url.Scheme, (object)HttpContext.Current.Request.Url.Authority);
+                //stringBuilder1.Replace(" href=\"/", string.Format(" href=\"{0}/", (object)str));
+                //stringBuilder1.Replace(" src=\"/", string.Format(" src=\"{0}/", (object)str));
+                return WkhtmltopdfDriver.ConvertHtml(this.RotativaOptions, stringBuilder1.ToString());
+
+
+
+         //       return null;
+
+                //context.Controller.ViewData.Model = this.Model;
+                //if (string.IsNullOrEmpty(this.ViewName))
+                //    this.ViewName = context.RouteData.GetRequiredString("action");
+                //using (StringWriter stringWriter = new StringWriter())
+                //{
+                //    ViewEngineResult view = this.GetView(context, this.ViewName, this.MasterName);
+                //    if (view.View == null)
+                //    {
+                //        StringBuilder stringBuilder = new StringBuilder();
+                //        stringBuilder.AppendLine();
+                //        foreach (string searchedLocation in view.SearchedLocations)
+                //            stringBuilder.AppendLine(searchedLocation);
+                //        throw new InvalidOperationException(string.Format("The view '{0}' or its master was not found, searched locations: {1}", (object)this.ViewName, (object)stringBuilder));
+                //    }
+                //    ViewContext viewContext = new ViewContext(context, view.View, context.Controller.ViewData, context.Controller.TempData, (TextWriter)stringWriter);
+                //    view.View.Render(viewContext, (TextWriter)stringWriter);
+                //    StringBuilder stringBuilder1 = stringWriter.GetStringBuilder();
+                //    string str = string.Format("{0}://{1}", (object)HttpContext.Current.Request.Url.Scheme, (object)HttpContext.Current.Request.Url.Authority);
+                //    stringBuilder1.Replace(" href=\"/", string.Format(" href=\"{0}/", (object)str));
+                //    stringBuilder1.Replace(" src=\"/", string.Format(" src=\"{0}/", (object)str));
+                //return WkhtmltopdfDriver.ConvertHtml(this.RotativaOptions, stringBuilder1.ToString());
+                // }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }

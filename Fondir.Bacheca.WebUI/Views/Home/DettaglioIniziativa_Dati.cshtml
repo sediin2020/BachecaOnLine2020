@@ -1,0 +1,168 @@
+﻿@model Fondir.Bacheca.Dom.Entities.DettaglioIniziativa
+
+<div class="well" style="background-color: #134b89; color: white;">
+    <h3><label class="label label-warning">@Html.DisplayFor(model => model.codice)</label> - @Model.tipologia</h3>
+</div>
+<br />
+<div>
+    <b>Titolo</b>
+</div>
+<div class="text-info">@Model.titolo</div>
+<br />
+<div>
+    <b>Struttura Formativa</b>
+</div>
+<div class="text-muted">@Model.soggetto_erogatore</div>
+<br />
+@if (Html.IsTipologiaSeminari(Model.tipologia))
+{
+    <div>
+        <b>Modalità Percorso</b>
+    </div>
+    <div class="text-muted">@Model.modalita_percorso</div>
+    <br />
+}
+@*<div>
+    <b>Settore</b>
+</div>
+<div class="text-muted">@Model.comparto</div>
+<br />*@
+<div>
+    <b>Area Tematica</b>
+</div>
+<div class="text-muted">@Model.areatematica</div>
+<br />
+<div>
+    <b>Tematica dell'Iniziativa</b>
+</div>
+<div class="text-muted">@Model.tematica</div>
+<br />
+<div>
+    <b>Obiettivi</b>
+</div>
+<div class="text-muted">@Model.obiettivi</div>
+<br />
+@if (Model.tipo_iniziativa == 1 || Model.tipo_iniziativa == 3)
+{
+    <div>
+        <b>Metodologie Formative</b>
+    </div>
+    <div class="text-muted">@Model.metodologie_formative</div>
+    <br />
+}
+
+@if (Model.tipo_iniziativa == 2)
+{
+    <div>
+        <b>Programma Evento</b>
+    </div>
+    <div class="text-muted">@Model.programma_evento</div>
+    <br />
+    @*<div>
+        <b>Impianto organizzativo dell'evento</b>
+    </div>
+    <div class="text-muted">@Model.programma_evento</div>
+    <br />*@
+}
+
+@*@if (Html.IsTipologiaMaster(Model.tipologia))
+{
+    <div>
+        <b>Rilevazione Fabbisogni</b>
+    </div>
+    <div class="text-muted">@Model.rilevazione_fabbisogni</div>
+    <br />
+}
+
+@if (Html.IsTipologiaSeminari(Model.tipologia))
+{
+    <div>
+        <b>Programma Evento</b>
+    </div>
+    <div class="text-muted">@Model.programma_evento</div>
+    <br />
+}
+<div>
+    <b>Esperienza del Soggetto Erogatore</b>
+</div>
+<div class="text-muted">@Model.esperienza_soggetto_erogatore</div>
+<br />
+@if (Html.IsTipologiaMaster(Model.tipologia))
+{
+    <div>
+        <b>Risultati Attesi</b>
+    </div>
+    <div class="text-muted">@Model.risultati_attesi</div>
+    <br />
+}*@
+
+<div>
+    <b>RIFERIMENTO IMPORTO INIZIATIVA</b>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <b>Costo per Partecipante</b>
+    </div>
+    <div class="col-md-4">
+        <b>IVA</b>
+    </div>
+    <div class="col-md-4">
+        <b>Totale Costo</b>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4"><span class="text-success" style="border-bottom:double green;">&euro; @Model.costo_partecipante</span></div>
+    <div class="col-md-4"><span class="text-info" style="border-bottom:double #3a87ad;">@Html.ToIntero(Model.iva) %</span></div>
+    <div class="col-md-4"><span class="text-success" style="border-bottom:double green;">&euro; @Model.totale_costo</span></div>
+</div>
+<br />
+
+
+<div>
+    <b>REFERENTE INIZIATIVA</b>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <b>Soggetto Referente</b>
+    </div>
+    <div class="col-md-4">
+        <b>Recapito Telefonico</b>
+    </div>
+    <div class="col-md-4">
+        <b>Recapito Mail</b>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">@Model.persona_referente_iniziativa</div>
+    <div class="col-md-4">@Model.recapito_telefonico_referente_iniziativa</div>
+    <div class="col-md-4">@Model.recapito_mail_referente_iniziativa</div>
+</div>
+<br />
+@if (!Html.IsTipologiaSeminari(Model.tipologia))
+{
+    <div>
+        <h3><label class="label label-info">Elenco Moduli</label></h3>
+    </div>
+
+    Html.RenderAction("DettaglioModuliXIniziativa", new { id = Model.iniziativaID });
+
+    <br />
+}
+
+<div>
+    <b>Totale durata del percorso in ore</b>
+</div>
+<div class="text-muted">@Model.totale_ore</div>
+<br />
+
+@if (!Html.IsTipologiaOneToOne(Model.tipologia))
+{
+    <div>
+        <h3><label class="label label-danger">Elenco Edizioni</label></h3>
+    </div>
+    Html.RenderAction("DettaglioEdizioniXIniziativa", new { id = Model.iniziativaID });
+}

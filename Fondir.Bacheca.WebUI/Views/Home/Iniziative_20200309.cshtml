@@ -1,0 +1,105 @@
+﻿
+<div id="containerResultIniziative" style="display:none">
+
+    @*<div class="titoliRicerca" id="titoliRicerca">
+        Ultime iniziative in programma...
+    </div>*@
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="titoliSelect col-sm-4" style="font-weight:300; white-space:nowrap; margin-top: 3px">ORDINA PER...</div>
+                <div class="col-sm-8" style="margin-top: -10px">
+                    <select class="selectpicker" name="OrderBy" id="OrderBy" onchange="orderRecords()">
+                        <option value="">[Ordina iniziative]</option>
+
+                        <option value="CodiceIniziativaNumerico asc">Codice iniziativa crescente</option>
+                        <option value="CodiceIniziativaNumerico desc">Codice iniziativa decrescente</option>
+
+                        <option value="DataInizio asc">Data inizio iniziativa crescente</option>
+                        <option value="DataInizio desc">Data inizio iniziativa decrescente</option>
+
+                        <option value="DataFine asc">Data fine iniziativa crescente</option>
+                        <option selected value="DataFine desc">Data fine iniziativa decrescente</option>
+
+                        <option value="Struttura asc">Struttura crescente</option>
+                        <option value="Struttura desc">Struttura decrescente</option>
+                        <option value="Titolo asc">Titolo iniziativa crescente</option>
+                        <option value="Titolo desc">Titolo iniziativa decrescente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-6">
+            <div style="margin-top:20px" class="pull-right visible-lg visible-md">
+
+                <span class="titoliSelect" style="padding-right:10px; font-weight:300">Visualizza per</span>
+
+                <div style="float:right; margin-top:-8px">
+                    <img src="~/Content/images/dataList.png" class="btnView" data-view="IniziativeDataList"
+                         data-toggle="popover"
+                         data-content="Visualizza lista verticale" data-trigger="hover" />
+
+                    <img src="~/Content/images/lista.png" class="btnView" data-view="IniziativeList"
+                         data-toggle="popover"
+                         data-content="Visualizza lista horizontale" data-trigger="hover" />
+
+                    <input type="hidden" name="view" id="view" value="IniziativeDataList" />
+
+                </div>
+            </div>
+        </div>*@
+        <div class="col-md-3">
+            <button class="btn btn-warning btn-sm" id="btnSalvaPDF"><i class="fa fa-file-pdf-o"></i> Scarica elenco iniziative</button>
+        </div>
+        <div class="col-md-3">
+            <div id="totaleSelectIniziative" class="pull-right"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        @*<div class="col-md-12" style="padding-left:10px">
+            <hr />
+        </div>
+
+        
+
+        <div class="clearfix"></div>*@
+
+        <div class="col-md-12" style="padding-left:10px; margin-top:-20px">
+            <hr />
+        </div>
+
+        <div class="col-md-12">
+            <div id="resultSelectIniziative" class="row">
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div id="loaderSelectIniziative" style="display:none; padding-bottom:10px; padding-top:15px" class="col-md-12">
+            <div class="ajax-loader"></div>
+
+            <span style="margin-left:10px; font-size:12px">
+                Attendere carico lista...
+            </span>
+        </div>
+
+    </div>
+
+    <div id="loaderSelectIniziative" style="display:none">
+        <div class="ajax-loader"></div><span style="margin-left:15px">Attendere, carricamento prossime righe in corso...</span>
+    </div>
+
+</div>
+
+<div id="containerLoading">
+
+</div>
+
+<script>
+    $("#btnSalvaPDF").click(function () {
+        salvaPDF();
+    });
+</script>

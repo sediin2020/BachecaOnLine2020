@@ -1,0 +1,510 @@
+﻿@font-face {
+    font-family: RobotoCondensedThin;
+    src: url(fonts/Roboto-Thin.woff);
+}
+
+@font-face {
+    font-family: RobotoCondensedLight;
+    src: url(fonts/Roboto-Light.woff);
+}
+
+
+@font-face {
+    font-family: RobotoCondensedBold;
+    src: url(fonts/RobotoCondensed-BOLD.woff);
+}
+
+@font-face {
+    font-family: RobotoCondensedRegular;
+    src: url(fonts/RobotoCondensed-Regular.woff);
+}
+
+@font-face {
+    font-family: FlamaCondensedBook;
+    src: url(fonts/FlamaCondensed-Book.woff);
+}
+
+@font-face {
+    font-family: FlamaCondensedBasic;
+    src: url(fonts/FlamaCondensed-Basic.woff);
+}
+
+@font-face {
+    font-family: FlamaCondensedSemibold;
+    src: url(fonts/FlamaCondensed-Semibold.woff);
+}
+
+@font-face {
+    font-family: Impactreg;
+    src: url(fonts/impactreg.woff);
+}
+
+@font-face {
+    font-family: 'UbuntuCondensed';
+    src: url(fonts/Ubuntu-Condensed.woff);
+}
+
+body {
+    padding-bottom: 20px;
+}
+
+.containerBody {
+    margin-top: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.textUbuntu {
+    font-family: UbuntuCondensed;
+}
+
+header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-image: url(images/banner.png);
+    width: 100%;
+    min-height: 455px;
+}
+
+footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-image: url(images/footer.png);
+    width: 100%;
+    min-height: 155px;
+}
+
+.a_menuLink:link {
+    color: #194582;
+    font-family: RobotoCondensedRegular;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.bannerTitolo {
+    font-family: UbuntuCondensed;
+}
+
+.bannerHeader {
+    height: 20px;
+    background-color: orange;
+    /* background-color: #5faaaf; */
+    width: 100%;
+}
+
+.bannerFooter {
+    height: 20px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#355d91+0,5a8ca3+50,91bcc5+100 */
+    background: #355d91; /* Old browsers */
+    background: -moz-linear-gradient(left, #355d91 0%, #5a8ca3 50%, #91bcc5 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #355d91 0%,#5a8ca3 50%,#91bcc5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #355d91 0%,#5a8ca3 50%,#91bcc5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#355d91', endColorstr='#91bcc5',GradientType=1 ); /* IE6-9 */
+}
+
+.containerBanner {
+    background-color: #dee4f0;
+}
+
+.banner {
+    background-image: url(images/banner.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    width: 100%;
+    /* min-height: 355px; */
+    padding: 10px;
+    padding-left: 20px;
+}
+
+    /*media all*/
+    .banner p {
+        color: #3c3c3b;
+        font-size: 24px;
+        line-height: 28px;
+        margin-top: 20px;
+        /* width: 575px; */
+        width: 100%;
+        font-weight: 100;
+        font-family: RobotoCondensedLight;
+    }
+
+.outer {
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+    bottom: 0;
+    width: 75%;
+    -webkit-column-count: 3;
+    column-count: 3;
+    margin-top: 10px;
+}
+
+
+
+.btnBannerLeft {
+    background-color: #396192;
+    padding-top: 25px;
+}
+
+.btnBannerMiddle {
+    background-color: #6499a9;
+    padding-top: 10px;
+}
+
+.btnBannerRight {
+    background-color: #91bcc5;
+    padding-top: 10px;
+}
+
+.btnBanner {
+    height: 100%;
+    text-align: center;
+    font-family: RobotoCondensedBold;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+    .btnBanner:hover {
+        opacity: 0.9;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
+    }
+
+
+.innerdivs {
+    border-bottom: 2px solid #274367;
+    height: 80px;
+    text-align: justify;
+    width: 100%;
+    color: white;
+}
+
+    .innerdivs:hover {
+        border-bottom: 2px solid #17283c;
+        cursor: pointer;
+    }
+
+.innerdivsSelected {
+    border-bottom: 2px solid orange;
+    color: yellow;
+}
+
+    .innerdivsSelected:hover {
+        border-bottom: 2px solid orange;
+    }
+
+.titoliRicerca {
+    font-family: RobotoCondensedBold;
+    color: #144a8a;
+    font-size: 24px;
+}
+
+.titoliSelect {
+    font-family: RobotoCondensedRegular;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.ajax-loader {
+    background-image: url(images/ajax-loader_2.gif);
+    width: 16px;
+    height: 11px;
+    float: left;
+    margin-top: 4px;
+}
+
+.btnView {
+    cursor: pointer;
+}
+/* iniziativa */
+.iniziativaDatalist {
+    height: 345px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.iniziativaDatalistItem {
+    border: 1px solid #6499a9;
+    width: 100%;
+    height: 100%;
+    background-image: url(images/sfondo_tabellina.png);
+    background-color: transparent;
+    /* background-color: gray; */
+    /* background-color: #91bcc5; */
+    color: white;
+}
+
+.iniziativaListItem {
+    border: 1px solid #6499a9;
+    width: 100%;
+    height: 165px;
+    background-color: #91bcc5;
+    color: white;
+}
+
+.iniziativaLuogo {
+    padding-top: 15px;
+    position: absolute;
+    bottom: 20px;
+}
+
+.iniziativaStruttura {
+    padding-top: 5px;
+    font-weight: bold;
+    line-height: 16px;
+}
+
+.iniziativaPeriodo {
+    padding-top: 10px;
+    font-size: 14px;
+    font-family: RobotoCondensedBold;
+    font-style: italic;
+    color: orange;
+}
+
+.iniziativaFooter {
+    padding-top: 15px;
+    position: absolute;
+    bottom: 20px;
+    padding-right: 15px;
+}
+
+.iniziativaFooter_2 {
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.iniziativaTipo {
+    font-size: 13px;
+    font-family: RobotoCondensedLight;
+    font-weight: bold;
+    line-height: 14px;
+}
+
+.iniziativaTitolo {
+    padding-top: 10px;
+    font-size: 18px;
+    font-family: RobotoCondensedRegular;
+    line-height: 20px;
+    padding-right: 15px;
+}
+
+.iniziativaImmagine_formazione {
+    background-image: url(images/formazione.png);
+    background-size: cover;
+    width: 100%;
+    height: 111px;
+    background-repeat: no-repeat;
+}
+
+.iniziativaImmagine_onetoone {
+    background-image: url(images/onetoone.png);
+    background-size: cover;
+    width: 100%;
+    height: 111px;
+    background-repeat: no-repeat;
+}
+
+.iniziativaImmagine_workshop {
+    background-image: url(images/workshop.png);
+    background-size: cover;
+    width: 100%;
+    height: 111px;
+    background-repeat: no-repeat;
+}
+
+.iniziativaLuogo_2 {
+    padding-top: 15px;
+    position: absolute;
+    bottom: -10px;
+}
+
+.iniziativaStruttura_2 {
+    padding-top: 15px;
+    font-weight: bold;
+    line-height: 16px;
+    position: absolute;
+    padding-right: 15px;
+    bottom: -25px;
+}
+
+.iniziativaTitolo_2 {
+    padding-top: 5px;
+    font-size: 18px;
+    font-family: RobotoCondensedRegular;
+    line-height: 20px;
+    padding-right: 15px;
+}
+
+
+.iniziativaImmagine_onetoone_2 {
+    background-image: url("images/onetoone.png");
+    background-size: cover;
+    width: 100%;
+    height: 163px;
+    background-repeat: no-repeat;
+    background-position-x: -95px;
+}
+
+
+
+
+.iniziativaImmagine_formazione_2 {
+    background-image: url(images/formazione.png);
+    background-size: cover;
+    width: 100%;
+    height: 163px;
+    background-repeat: no-repeat;
+    background-position-x: -15px;
+}
+
+
+
+.iniziativaImmagine_workshop_2 {
+    background-image: url(images/workshop.png);
+    background-size: cover;
+    width: 100%;
+    height: 163px;
+    background-repeat: no-repeat;
+    background-position-x: -75px;
+}
+
+.dataItemContent {
+    padding: 10px;
+}
+
+.btnDettaglioIniziativa:hover {
+    opacity: 0.9;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+
+
+/* scroll top */
+.scroll-top-wrapper {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    text-align: center;
+    z-index: 99999999;
+    background-color: #777;
+    color: #eee;
+    width: 50px;
+    height: 48px;
+    line-height: 48px;
+    right: 30px;
+    bottom: 30px;
+    padding-top: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+    .scroll-top-wrapper:hover {
+        background-color: #888;
+    }
+
+    .scroll-top-wrapper.show {
+        visibility: visible;
+        cursor: pointer;
+        opacity: 1;
+    }
+
+    .scroll-top-wrapper i.fa {
+        line-height: inherit;
+    }
+/* scroll top */
+
+.btnBannerButtonTop {
+    width: 225px;
+    height: 80px;
+    text-align: center;
+    font-family: RobotoCondensedBold;
+    text-transform: uppercase;
+    color: white !important;
+    font-size: 17px;
+    background-color: #91bcc5;
+    padding-top: 10px;
+    cursor: pointer;
+    border: 1px solid #929191;
+    margin-right: 130px;
+    box-shadow: 10px 10px 5px #bdbdbd;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+    .btnBannerButtonTop a {
+        color: white;
+        text-decoration: none;
+    }
+
+        .btnBannerButtonTop a:hover {
+            color: yellow;
+            text-decoration: none;
+        }
+
+.titoloPortale {
+    font-family: RobotoCondensedRegular;
+    color: #144a8a;
+    font-size: 20px;
+    margin-top: 30px;
+    position: absolute;
+    margin-left: 5px;
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .outer {
+        display: normal;
+        margin: auto;
+        left: 0;
+        right: 0;
+        padding-top: 0px;
+        bottom: 0;
+        width: 100%;
+        -webkit-column-count: 1;
+        column-count: 1;
+        margin-top: 0px;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+    }
+
+
+
+}

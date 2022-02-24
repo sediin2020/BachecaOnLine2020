@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondir Bacheca 2020</title>
+
+    @Styles.Render("~/Content/css")
+    <link href="~/bootstrap-select-1.12.4/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+
+    <script src="~/bootstrap-select-1.12.4/js/bootstrap-select.min.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+</head>
+<body>
+
+
+    <header>
+        <div class="container">
+            <div class="col-md-2">
+                <a href="javascript: document.location.href = 'http://www.fondir.it';" border="0">
+                @*<a href="#" onClick="window.open('http://www.fondir.it', '_blank')" border="0">*@
+                    <img src="~/Content/images/logo_mobile.png" />
+                </a>
+                @*<span class="titoloPortale" style="color: white; vertical-align: text-bottom; margin-top: 80px;">Bacheca Iniziative Formative 2020</span>*@
+            </div>
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-6 text-center">
+                @*<a href="#" onClick="window.open('https://dirigenti.fondir.it/Fondir.PiattaformaUnica', '_blank')" border="0">
+                    <img src="~/Content/images/PiattaformaUnicaGrigia.png"/>
+                </a>*@
+                <a href="#" onClick="window.open('https://unica.fondir.it/unicafondir2-web/login.htm', '_blank')" border="0">
+                    <img src="~/Content/images/PiattaformaUnicaBlu.png" />
+                </a>
+                @*<div class="col-md-3">
+                    <img src="~/Content/images/logo.png" />
+
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <div style="margin-top:60px">
+
+                        <form class="form-horizontal">
+
+                            <div class="col-md-8 text-right" style="margin-top:12px">
+                                <a class="control-label a_menuLink" href="#">Accedi</a>  | <a class="control-label a_menuLink" href="#">Registrati</a>
+                            </div>
+
+                            <div class="col-sm-4 pull-right">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon">
+
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>*@
+
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-11">
+                    <a href="javascript: document.location.href = 'http://www.fondir.it/chi-siamo';" border="0">
+                    @*<a href="#" onClick="window.open('http://www.fondir.it/chi-siamo', '_blank')" border="0">*@
+                        <img src="~/Content/images/ChiSiamo.png" />
+                    </a>
+                    <a href="javascript: document.location.href = 'http://www.fondir.it/fondo-trasparente';" border="0">
+                    @*<a href="#" onClick="window.open('http://www.fondir.it/fondo-trasparente', '_blank')" border="0">*@
+                        <img src="~/Content/images/FondoTrasparente.png" />
+                    </a>
+                    <a href="javascript: document.location.href = 'http://www.fondir.it/come-aderire';" border="0">
+                    @*<a href="#" onClick="window.open('http://www.fondir.it/come-aderire', '_blank')" border="0">*@
+                        <img src="~/Content/images/ComeAderire.png" />
+                    </a>
+                    <a href="javascript: document.location.href = 'http://www.fondir.it/contatti';" border="0">
+                    @*<a href="#" onClick="window.open('http://www.fondir.it/contatti', '_blank')" border="0">*@
+                        <img src="~/Content/images/Contatti.png" />
+                    </a>
+                </div>
+            </div>
+            @*
+    <img src="~/Content/images/logo.png" style="position:absolute; margin-left:20px" />
+
+    <span class="titoloPortale">Bacheca Iniziative Formative</span>*@
+
+        </div>
+    </header>
+    @*<div class="container">
+        @{ Html.RenderPartial("Banner");}
+    </div>*@
+
+
+    <div class="container containerBody body-content">
+        @RenderBody()
+
+        @*@{ Html.RenderPartial("Footer");}*@
+    </div>
+
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+
+
+    <div id="scrolltopwrapper" class="scroll-top-wrapper">
+        <span class="scroll-top-inner">
+            <i class="fa fa-2x fa-arrow-circle-up"></i>
+        </span>
+    </div>
+    <script>
+        //scroll
+        $().ready(function () {
+            $('.scroll-top-wrapper').click(scrollContainerTop);
+        });
+
+        $(document).on('scroll', function () {
+            try {
+                if ($(window).scrollTop() > 100) {
+                    $('.scroll-top-wrapper').addClass('show');
+                } else {
+                    $('.scroll-top-wrapper').removeClass('show');
+                }
+            } catch (e) {
+
+            }
+        });
+
+        function scrollContainerToPosition(position) {
+            try {
+                $('html, body').animate({
+                    scrollTop: position
+                }, 800);
+            } catch (e) {
+
+            }
+        }
+
+        function scrollContainerTop() {
+            scrollContainerToPosition(0);
+        }
+
+        function scrollToElementId(e) {
+            scrollContainerToPosition($("#" + e).offset().top - 100);
+        }
+
+        $(function () {
+
+            // var _show = $('.scroll-top-wrapper').hasClass("show");
+
+            $('#modalDetail').modal("hide").on('shown.bs.modal', function () {
+
+                $('#modalDetail').animate({ scrollTop: 0 }, 'slow');
+
+                // $('.scroll-top-wrapper').removeClass('show');
+
+                //$('body').css({
+                //    overflow: 'hidden'
+                //});
+            }).on('hidden.bs.modal', function () {
+                //$('body').css({
+                //    overflow: 'auto'
+                //});
+            });
+
+
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

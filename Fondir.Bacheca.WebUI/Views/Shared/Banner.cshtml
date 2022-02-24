@@ -1,0 +1,67 @@
+﻿
+<div class="containerBanner">
+    <div class="bannerHeader visible-lg visible-md  visible-sm"></div>
+    <div class="banner visible-lg visible-md  visible-sm"></div>
+        @*<div class="bannerHeader visible-lg visible-md  visible-sm"></div>
+
+            <div class="banner visible-lg visible-md  visible-sm">
+                <div style="padding-top:10px">
+
+                    <div class="btnBannerButtonTop pull-right" data-tipoogia="3">
+                        <a href="#" onClick="window.open('http://www.fondir.it/content/accesso-alla-bacheca-fondir', '_blank')">
+                            Modalità per la richiesta di contributo
+                        </a>
+                    </div>
+                    <p class="textUbuntu" style="font-size: 40px; font-weight: bold;">
+                        Bacheca Fondir
+                    </p>
+
+                    <p class="textUbuntu" style="font-size: 24px;">
+                        <br>Offerta formativa manageriale selezionata<br>
+                        e proposta da Università,<br>
+                        Enti di Formazione e Business School.<br><br>
+                        Consulta la Bacheca, <br>
+                        scegli la tua iniziativa e <br>
+                        richiedi on-line il contributo al Fondo.<br><br>
+                    </p>
+
+                </div>
+            </div>
+            <div style="text-align: right; font-size: 18px;">
+                    <p>
+                        <a href="#" onClick="window.open('http://www.fondir.it/content/avviso-12017-accesso-alla-bacheca-di-iniziative-di-formazione-continua-i-dirigenti-delle-imp', '_blank')">
+                            <b>Modalità per la richiesta di contributo</b>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;
+                    </p>
+                </div>
+            <div class="outer">
+                <div class="innerdivs" data-tipoogia="1">
+                    <div class="btnBanner btnBannerLeft">
+                        One to one
+                    </div>
+                </div>
+
+                <div class="innerdivs" data-tipoogia="2">
+                    <div class="btnBanner btnBannerMiddle">
+                        workshop seminari<br />e convegni
+                    </div>
+                </div>
+
+                <div class="innerdivs" data-tipoogia="3">
+                    <div class="btnBanner btnBannerRight">
+                        percorsi di alta<br />formazione e master
+                    </div>
+                </div>
+
+            </div>*@
+
+        @*<div class="bannerFooter visible-lg visible-md  visible-sm" id="menuTipoiniziativa"></div>*@
+</div>
+
+<script>
+    $(".innerdivs").click(function () {
+        //alert($(this).data("tipoogia"));
+        filtraTipologia($(this).data("tipoogia"));
+    });
+</script>
